@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Cal-sans";
+  src: url("./assets/fonts/CalSans-SemiBold.ttf");
+}
+
+@theme {
+  /* Core Colors */
+  --color-primary: #3b82f6;
+  --color-primary-600: #2563eb;
+  --color-primary-50: #eff6ff;
+  --color-primary-900: #1e3a8a; /* This fixes your current error */
+
+  --color-secondary: #64748b;
+  --color-secondary-200: #e2e8f0;
+
+  /* Fonts */
+  --font-cal-sans: "Cal-sans", sans-serif;
+  --font-nunito: "Nunito", sans-serif;
+}
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-cal-sans);
+    @apply antialiased;
+  }
+
+  body {
+    font-family: var(--font-nunito);
+    @apply bg-slate-50 text-slate-900 antialiased;
+  }
+
+  /* 1. Global Label Styling: High contrast for your blue background */
+  label {
+    @apply block text-white font-bold mb-2 text-sm tracking-wide;
+    position: relative !important; /* Overrides any absolute positioning */
+  }
+
+  /* Ensure the input box has a defined height so it doesn't collapse */
+  input {
+    @apply w-full bg-white text-slate-900 px-4 py-3 rounded-xl min-h-[48px] block;
+    appearance: none;
+  }
+
+  /* 3. Global SVG sizing */
+  svg {
+    @apply size-5 inline-block;
+  }
+
+  /* 4. Selection color (Light blue highlight) */
+  ::selection {
+    @apply bg-primary/30 text-primary-900;
+  }
+}
+
+/* Utilities MUST be top-level in v4 (no nesting in @layer) */
+@utility animateBottom {
+  position: relative;
+  &::after {
+    content: "";
+    @apply absolute -bottom-1 left-0 w-0 h-[2px] bg-current rounded-full transition-all duration-500;
+  }
+  &:hover::after { @apply w-full; }
+}
+
+@utility box-shadow {
+  @apply shadow-[0_20px_50px_rgba(0,0,0,0.1)];
+}
+
+@utility action-btn {
+  @apply text-sm font-bold underline transition-all hover:text-white cursor-pointer;
+}

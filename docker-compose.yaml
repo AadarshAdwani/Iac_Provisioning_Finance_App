@@ -1,0 +1,66 @@
+version: "3.9"
+
+services:
+  mongo:
+    image: mongo:7
+    container_name: expense-mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  backend:
+    build: ./backend
+    container_name: expense-backend
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=production
+      - PORT=5000
+      - MONGO_URI=mongodb://mongo:27017/expenseDB
+    depends_on:
+      - mongo
+
+  agentic-ai:
+    build: ./app
+    container_name: expense-agentic-ai
+    restart: unless-stopped
+    ports:
+      - "8001:8001"
+    environment:
+      - GROQ_API_KEY=${GROQ_API_KEY}
+    depends_on:
+      - backend
+
+  gen-ai:
+    build: ./gen-ai
+    container_name: expense-gen-ai
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - GROQ_API_KEY=${GROQ_API_KEY}
+      - SECRET_KEY=${SECRET_KEY}
+    volumes:
+      - chroma-data:/app/chroma_db
+      - sqlite-data:/app/data
+    depends_on:
+      - backend
+
+  frontend:
+    build: ./frontend
+    container_name: expense-frontend
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+      - agentic-ai
+      - gen-ai
+
+volumes:
+  mongo-data:
+  chroma-data:
+  sqlite-data:

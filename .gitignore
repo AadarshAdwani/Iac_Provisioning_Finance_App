@@ -1,0 +1,59 @@
+# =========================
+# Node
+# =========================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# =========================
+# Environment files (SECRETS)
+# =========================
+.env
+.env.*
+!.env.example
+
+# =========================
+# Build folders
+# =========================
+dist/
+build/
+coverage/
+
+# =========================
+# Logs
+# =========================
+logs
+*.log
+
+# =========================
+# OS files
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Terraform
+# =========================
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+override.tf
+override.tf.json
+terraform.tfvars   # contains secrets → DO NOT PUSH
+
+# =========================
+# Docker
+# =========================
+*.pid
+*.seed
+
+# =========================
+# IDE
+# =========================
+.vscode/
+.idea/
+ 
+venv 
+requirements.txt
