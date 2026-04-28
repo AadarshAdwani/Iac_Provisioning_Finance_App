@@ -119,7 +119,7 @@ const SideBar = () => {
 
           <li
             className="flex items-center gap-x-3 px-4 py-3 rounded-xl cursor-pointer transition-all font-medium text-sm text-slate-500 hover:bg-red-50 hover:text-red-600"
-            onClick={() => dispatch(openModal())}
+            onPointerDown={() => dispatch(openModal())}
           >
             <Logout className="size-5" />
             Logout

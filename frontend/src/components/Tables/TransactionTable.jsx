@@ -203,7 +203,7 @@ const TransactionTable = ({
                   <Tooltip color="danger" content="Delete">
                     <span
                       className="text-lg text-danger cursor-pointer active:opacity-50"
-                      onClick={() =>
+                      onPointerDown={() =>
                         dispatch(deleteModal({ title, _id, type: name }))
                       }
                     >

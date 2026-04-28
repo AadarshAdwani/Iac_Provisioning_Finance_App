@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Avatar } from "@nextui-org/react";
 import { Link } from "react-router-dom";
-
+import { useSelector } from "react-redux";
 import { Settings, ShutDown as Logout } from "../../utils/Icons";
 import arrow from "../../assets/arrow.gif";
 import avatar from "../../assets/avatar.webp";
@@ -16,7 +16,7 @@ const TopBar = () => {
   const dispatch = useDispatch();
 
   const isRouteActive = (path) => location.pathname === path;
-
+  const user = useSelector((state) => state.auth.user.username);
   return (
     <header className="w-full h-16 md:h-20 flex justify-between items-center px-4 md:px-8 bg-white/80 backdrop-blur-md border-b border-slate-100 sticky top-0 z-40">
       
@@ -29,7 +29,7 @@ const TopBar = () => {
       <div className="hidden md:flex items-center gap-x-4">
         <img src={arrow} alt="arrow icon" className="w-8 opacity-80" />
         <Link
-          to="https://www.linkedin.com/in/saxena-shourya/"
+          to="https://github.com/AadarshAdwani"
           target="_blank"
           className="text-sm font-semibold text-slate-500 transition-all hover:text-primary flex items-center gap-1 group"
         >
@@ -57,7 +57,7 @@ const TopBar = () => {
           <button
             title="Logout"
             className="p-2 text-slate-500 rounded-xl transition-all cursor-pointer hover:bg-red-50 hover:text-red-600"
-            onClick={() => dispatch(openModal())}
+            onPointerDown={() => dispatch(openModal())}
           >
             <Logout className="size-5" />
           </button>
@@ -66,7 +66,7 @@ const TopBar = () => {
         {/* User Info */}
         <div className="flex items-center gap-x-3">
           <div className="hidden sm:block text-right">
-            <p className="text-xs font-bold text-slate-900 leading-none">User Name</p>
+            <p className="text-xs font-bold text-slate-900 leading-none">{user}</p>
             <p className="text-[10px] text-slate-500 mt-1">Free Tier</p>
           </div>
           <Avatar
