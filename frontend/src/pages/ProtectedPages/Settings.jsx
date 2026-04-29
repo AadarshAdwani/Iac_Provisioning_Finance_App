@@ -196,7 +196,7 @@ const Settings = () => {
               className="mb-4"
             >
               <Tab key="accountInfo" title="Account Information">
-                <form className="flex flex-col gap-4">
+                <form className="flex flex-col gap-4 ">
                   <UsernameInput
                     value={username}
                     onChange={handleAccountInfoOnChange}

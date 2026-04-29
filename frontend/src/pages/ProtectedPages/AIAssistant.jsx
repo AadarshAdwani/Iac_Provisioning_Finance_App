@@ -40,7 +40,7 @@ const AIAssistant = () => {
     <section className="w-full min-h-screen p-6 bg-gray-50">
       <div className="max-w-3xl mx-auto">
         <h2 className="text-3xl font-bold mb-2 text-gray-800">
-          🧠 AI Finance Assistant
+           AI Finance Assistant
         </h2>
         <p className="text-gray-500 mb-6">
           Describe your issue and let AI analyze it instantly

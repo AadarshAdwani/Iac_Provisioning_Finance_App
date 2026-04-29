@@ -143,7 +143,7 @@ const FinanceQuiz = () => {
     return (
       <div style={styles.page}>
         <div style={styles.card}>
-          <h2 style={styles.title}>📊 FinanceIQ — AI Quiz Bot</h2>
+          <h2 style={styles.title}>FinanceIQ — AI Quiz Bot</h2>
           <p style={styles.subtitle}>
             Upload any Investment Report PDF and test your finance knowledge
           </p>

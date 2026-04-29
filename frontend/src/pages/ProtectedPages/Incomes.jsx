@@ -137,7 +137,7 @@ const Incomes = () => {
 
         {/* Form */}
         <div className="lg:col-span-4">
-          <div className="bg-white rounded-2xl shadow-sm p-6 h-[calc(100vh-200px)] flex flex-col">
+          <div className="bg-white rounded-2xl shadow-sm p-6 h-full flex flex-col ">
             <h3 className="text-lg font-semibold mb-4">Add Income</h3>
 
             <TransactionForm

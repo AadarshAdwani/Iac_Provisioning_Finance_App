@@ -39,6 +39,7 @@ const PasswordInput = ({
       }
       classNames={{
         errorMessage: "text-error font-calSans",
+          label: "text-slate-600",
       }}
     />
   );

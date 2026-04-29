@@ -160,32 +160,53 @@ const Expenses = () => {
   const hasErrors = Object.values(errors).some((error) => !!error);
 
   return (
-    <>
-      <h3 className="text-3xl lg:text-5xl mt-4 text-center">
-        Total Expense -{" "}
-        <span className="text-red-400">
-          $
+  <div className="flex flex-col gap-8 p-6 max-w-[1600px] mx-auto">
+
+    {/* Header */}
+    <div className="flex justify-between items-center bg-white p-6 rounded-2xl shadow-sm">
+      <div>
+        <h2 className="text-2xl font-bold">Expenses</h2>
+        <p className="text-gray-500">Track and manage your spending</p>
+      </div>
+
+      <div className="text-right">
+        <p className="text-sm text-gray-500">Total Expense</p>
+        <h3 className="text-3xl font-bold text-red-500">
+          ${" "}
           <NumericFormat
-            className="ml-1 text-2xl lg:text-4xl"
             value={totalExpense}
-            displayType={"text"}
-            thousandSeparator={true}
+            displayType="text"
+            thousandSeparator
           />
-        </span>
-      </h3>
-      <section className="w-full h-full flex flex-col lg:flex-row px-6 md:px-8 lg:px-12 pt-6 space-y-8 lg:space-y-0 lg:space-x-8">
-        <TransactionForm
-          button="Add Expense"
-          categories={expenseCategories}
-          btnColor="danger"
-          formData={formData}
-          errors={errors}
-          hasErrors={hasErrors}
-          isLoading={addExpenseLoading}
-          handleOnChange={handleOnChange}
-          handleDateChange={handleDateChange}
-          handleSubmit={handleSubmit}
-        />
+        </h3>
+      </div>
+    </div>
+
+    {/* Layout */}
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+      {/* Form */}
+      <div className="lg:col-span-4">
+        <div className="bg-white rounded-2xl shadow-sm p-6 h-full flex flex-col">
+          <h3 className="text-lg font-semibold mb-4">Add Expense</h3>
+
+          <TransactionForm
+            button="Add Expense"
+            categories={expenseCategories}
+            btnColor="danger"
+            formData={formData}
+            errors={errors}
+            hasErrors={hasErrors}
+            isLoading={addExpenseLoading}
+            handleOnChange={handleOnChange}
+            handleDateChange={handleDateChange}
+            handleSubmit={handleSubmit}
+          />
+        </div>
+      </div>
+
+      {/* Table */}
+      <div className=" lg:col-span-8 bg-white rounded-2xl shadow-sm p-6 h-full">
         <TransactionTable
           data={data?.expenses}
           name="expense"
@@ -196,9 +217,11 @@ const Expenses = () => {
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
         />
-      </section>
-    </>
-  );
+      </div>
+
+    </div>
+  </div>
+);
 };
 
 export default Expenses;

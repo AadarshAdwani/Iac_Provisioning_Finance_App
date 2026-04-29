@@ -26,7 +26,7 @@ const TransactionForm = ({
   return (
     <form onSubmit={handleSubmit} className="flex flex-col h-full">
       {/* Scrollable Inputs */}
-      <div className="flex flex-col gap-6 overflow-y-auto pr-2 pb-4">
+      <div className="flex flex-col gap-6  pr-2 pb-4">
 
         {/* Title */}
         <Input
@@ -65,25 +65,46 @@ const TransactionForm = ({
         />
 
         {/* Category */}
-        <Select
-          label="Category"
-          placeholder="Select category"
-          variant="bordered"
-          size="lg"
-          selectedKeys={safeForm.category ? [safeForm.category] : []}
-          isInvalid={!!errors.category}
-          errorMessage={errors.category}
-          onSelectionChange={(keys) => {
-            const value = Array.from(keys)[0] || "";
-            handleOnChange({
-              target: { name: "category", value },
-            });
-          }}
-        >
-          {categories.map((item) => (
-            <SelectItem key={item.value}>{item.label}</SelectItem>
-          ))}
-        </Select>
+        {/* Category */}
+{/* Category */}
+<Select
+  label="Category"
+  placeholder="Select category"
+  variant="bordered"
+  size="lg"
+  selectedKeys={safeForm.category ? [safeForm.category] : []}
+  isInvalid={!!errors.category}
+  errorMessage={errors.category}
+  onSelectionChange={(keys) => {
+    const value = Array.from(keys)[0] || "";
+    handleOnChange({
+      target: { name: "category", value },
+    });
+  }}
+
+  /* 🔥 POPUP STYLING */
+  classNames={{
+    /* Popup container */
+    popoverContent:
+      "bg-gray-800 text-white rounded-xl shadow-xl z-50 p-2",
+
+    /* List wrapper */
+    listbox:
+      "flex flex-col items-center gap-1",
+
+    /* Each category item */
+    listboxItem:
+      "w-full text-center px-6 py-3 rounded-lg cursor-pointer transition-all " +
+      "hover:bg-gray-700 hover:scale-[1.02] data-[selected=true]:bg-gray-700",
+  }}
+>
+  {categories.map((item) => (
+    <SelectItem key={item.value}>
+      {item.label}
+    </SelectItem>
+  ))}
+</Select>
+        
 
         {/* Date */}
         <DatePicker
@@ -111,7 +132,7 @@ const TransactionForm = ({
       </div>
 
       {/* Submit Button */}
-      <div className="pt-4 border-t mt-auto">
+      <div className="pt-4  ">
         <Button
           type="submit"
           color={btnColor}

@@ -18,6 +18,7 @@ const UsernameInput = ({ value, onChange, errors }) => {
       className="text-primary"
       classNames={{
         errorMessage: "text-error font-calSans",
+          label: "text-slate-600",
       }}
     />
   );

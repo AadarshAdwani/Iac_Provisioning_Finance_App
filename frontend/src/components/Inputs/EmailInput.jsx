@@ -22,6 +22,7 @@ const EmailInput = ({ value, onChange, errors, noDescription }) => {
       classNames={{
         description: !noDescription ? "text-secondary text-xs" : "",
         errorMessage: "text-error font-calSans",
+          label: "text-slate-600",
       }}
     />
   );
