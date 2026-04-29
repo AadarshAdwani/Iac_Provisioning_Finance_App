@@ -1,6 +1,7 @@
 version: "3.9"
 
 services:
+
   mongo:
     image: mongo:7
     container_name: expense-mongo
@@ -17,22 +18,26 @@ services:
     ports:
       - "5000:5000"
     environment:
-      - NODE_ENV=production
-      - PORT=5000
-      - MONGO_URI=mongodb://mongo:27017/expenseDB
+      NODE_ENV: production
+      PORT: 5000
+      MONGO_URI: mongodb://mongo:27017/expenseDB
     depends_on:
       - mongo
 
   agentic-ai:
-    build: ./app
+    build:
+      context: .
+      dockerfile: app/Dockerfile
     container_name: expense-agentic-ai
     restart: unless-stopped
     ports:
       - "8001:8001"
     environment:
-      - GROQ_API_KEY=${GROQ_API_KEY}
+      GROQ_API_KEY: ${GROQ_API_KEY}
+      PYTHONPATH: /code/app
     depends_on:
       - backend
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8001
 
   gen-ai:
     build: ./gen-ai
@@ -41,8 +46,8 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - GROQ_API_KEY=${GROQ_API_KEY}
-      - SECRET_KEY=${SECRET_KEY}
+      GROQ_API_KEY: ${GROQ_API_KEY}
+      SECRET_KEY: ${SECRET_KEY}
     volumes:
       - chroma-data:/app/chroma_db
       - sqlite-data:/app/data
